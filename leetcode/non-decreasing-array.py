@@ -1,5 +1,5 @@
 class Solution:
-    def checkPossibility(self, nums: List[int]) -> bool:
+    def checkPossibility(self, nums: list[int]) -> bool:
         counter = 0
         for i in range(len(nums)-1):
             if nums[i] > nums[i+1]:
