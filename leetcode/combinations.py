@@ -11,6 +11,7 @@ class Solution:
                 comb.append(i)
                 backtrack(i + 1, comb)
                 comb.pop()
+            return
         
         backtrack(1, [])
         return ans
