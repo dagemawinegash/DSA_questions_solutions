@@ -1,12 +1,12 @@
 class Solution:
     def reversePairs(self, nums: list[int]) -> int:
-        def merge(nums, low, mid, high):
+        def merge(nums, s, mid, e):
             temp = []
-            i = low
+            i = s
             j = mid + 1
 
-            while i <= mid and j <= high:
-                if nums[i] < nums[j]:
+            while i <= mid and j <= e:
+                if nums[i] <= nums[j]:
                     temp.append(nums[i])
                     i += 1
                 else:
@@ -17,31 +17,31 @@ class Solution:
                 temp.append(nums[i])
                 i += 1
 
-            while j <= high:
+            while j <= e:
                 temp.append(nums[j])
                 j += 1
 
-            for i in range(len(temp)):
-                nums[low + i] = temp[i]
+            for k in range(len(temp)):
+                nums[s + k] = temp[k]  
 
-        def count_pairs(nums, low, mid, high):
-            right = mid + 1
+        def count_pairs(nums, left, mid, right):
+            j = mid + 1
             cnt = 0
-            for i in range(low, mid + 1):
-                while right <= high and nums[i] > 2 * nums[right]:
-                    right += 1
-                cnt += (right - (mid + 1))
+            for i in range(left, mid + 1):
+                while j <= right and nums[i] > 2 * nums[j]:
+                    j += 1
+                cnt += (j - (mid + 1))
             return cnt
 
-        def mergeSort(nums, low, high):
+        def mergeSort(nums, l, r):
             cnt = 0
-            if low >= high:
+            if l >= r:
                 return 0
-            mid = (low + high) // 2
-            cnt += mergeSort(nums, low, mid)
-            cnt += mergeSort(nums, mid + 1, high)
-            cnt += count_pairs(nums, low, mid, high)
-            merge(nums, low, mid, high)
+            mid = (l + r) // 2
+            cnt += mergeSort(nums, l, mid)
+            cnt += mergeSort(nums, mid + 1, r)
+            cnt += count_pairs(nums, l, mid, r)
+            merge(nums, l, mid, r)
             return cnt
 
         return mergeSort(nums, 0, len(nums) - 1)
