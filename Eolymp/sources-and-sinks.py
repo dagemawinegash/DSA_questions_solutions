@@ -25,5 +25,5 @@ for i in range(n):
     if is_sink:
         sinks.append(i + 1)  
 
-print(len(sources), ' '.join(map(str, sources)))
-print(len(sinks), ' '.join(map(str, sinks)))
+print(len(sources), *sources)
+print(len(sinks), *sinks)
