@@ -1,14 +1,13 @@
 n = int(input())
-adj_matrix = []
+cnt = 0
 
 for i in range(n):
     row = list(map(int, input().split()))
-    adj_matrix.append(row)
+    for j in range(n):
+        if row[j] == 1:
+            cnt += 1
 
-ans = 0
-for i in range(n):
-    for j in range(i + 1, n):
-        if adj_matrix[i][j] == 1:
-            ans += 1
+print(cnt // 2)
 
-print(ans)
+
+
