@@ -1,5 +1,6 @@
 import heapq
 from collections import Counter
+
 class Solution:
     def topKFrequent(self, words: list[str], k: int) -> list[str]:
         counter = Counter(words)
